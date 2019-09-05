@@ -1,0 +1,10 @@
+#!/bin/sh
+
+xbindkeys &
+sxhkd &
+setbg &
+xcompmgr -r5 &
+dunst &
+xwallpaper --zoom ~/Pictures/Neuron_var.jpg
+
+unclutter &

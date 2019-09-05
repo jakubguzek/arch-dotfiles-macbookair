@@ -1,0 +1,14 @@
+Usage: kbd-leds [-h] [-m] [-p] [-s] [--max] [--min] [--inc value] [--dec value]
+kdb-leds is a small script for changing brightness of keyoard leds
+
+Options:
+	-h, --help	 Print the help message
+	-m		 Print the maximal possible value of leds' brightness
+	--max		 Set leds' brightness to maximal possible value
+	--min		 Set leds' brightness to zero
+	-p		 Print the current value of leds' brightness in percent
+	-s		 Print the current value of leds' brightness
+	--inc value	 Increase the current brightness by value. If the increased value would be greater than maximal possible value, then brightness is set to maximum. value must be a positive integer and cannot be empty
+	--dec value	 Decrease the current brightness by value. If the decreased value would be less than, or equal zero, then brightness is set to zero instead. value must be a positive integer and cannot be empty
+
+For more information see "man kbd-leds"

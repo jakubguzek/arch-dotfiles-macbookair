@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. "${HOME}/.cache/wal/colors.sh"
+
+icon=$(cat $HOME/.local/bin/ttf-font-awesome-4-utf8 | dmenu -i -l 15 -fn Monospace-14 -nb "$color0" -nf "$color7" -sb "$color1" -sf "$color7" | awk '{print $1}')
+
+[ "$icon" != "" ] || exit
+
+echo $icon | tr -d "\n" | xclip -selection clipboard
+echo $icon | tr -d "\n" | xclip -selection primary

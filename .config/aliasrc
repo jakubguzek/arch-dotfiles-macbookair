@@ -1,0 +1,21 @@
+#!/bin/sh
+
+. "${HOME}/.cache/wal/colors.sh"
+
+alias ka="killall" \
+	mkd="mkdir -pv" \
+	p="sudo pacman" \
+	SS="sudo systemctl" \
+	f="$FILE" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	x="sxiv -ft *" \
+	sdn="sudo shutdown -h now" \
+	ls="ls -hN --color=auto --group-directories-first" \
+	ll="ls -AhN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	upc="sudo pacman -Syu" \
+	lsp="pacman -Qett --color=always | less" \
+	zathura="zathura --fork" \
+	dmenu='dmenu -fn Monospace-14 -nb "$color0" -nf "$color7" -sb "$color1" -sf "$color7"' \
+	dmenu_run='dmenu_run -fn Monospace-14 -nb "$color0" -nf "$color7" -sb "$color1" -sf "$color7"'

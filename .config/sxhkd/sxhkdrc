@@ -1,0 +1,51 @@
+# Basics
+super + d
+	dmenu_run -i -l 10 -fn Monospace-14 -nb "#1a1a1a" -nf "#7bc7d2" -sb "#025768" -sf "#7bc7d2"
+uper + shift + Return
+	$TERMINAL
+super + shift + w
+	$BROWSER
+super + shift + f
+	$TERMINAL -e $FILE
+super + shift + v
+	$TERMINAL -e $EDITOR
+super + shift + u
+	fa-utf
+super + shift + i
+	$TERMINAL neofetch
+super + shift + m
+	$TERMINAL -e neomutt
+super + shift + r
+	reader_mode.sh
+super + shift + b
+	battery_check
+
+# Screen capture
+super + ctrl + 3
+	maim ~/Pictures/screenshots/$(date +%d-%m-%Y--%H:%M)-screenshot.png
+super + ctrl + 4
+	maim -s ~/Pictures/screenshots/$(date +%d-%m-%Y--%H:%M)-screenshot.png
+
+# Media keys
+XF86AudioRaiseVolume
+	amixer -q sset Master 5%+
+XF86AudioLowerVolume
+	amixer -q sset Master 5%-
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+XF86MonBrightnessUp
+	backlight --inc 140
+XF86MonBrightnessDown
+	backlight --dec 140
+XF86AudioPrev
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+XF86AudioPlay
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+XF86AudioNext
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+XF86KbdBrightnessUp
+	kbd-leds --inc 26
+XF86KbdBrightnessDown
+	kbd-leds --dec 26
+XF86LaunchB
+	kbd-leds --min

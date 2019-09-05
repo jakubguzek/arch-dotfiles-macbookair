@@ -1,0 +1,70 @@
+#!/usr/bin/env sh
+
+backlight_path="/sys/class/backlight"
+help_file="$HOME/.local/bin/man/backlight_help"
+
+case "$(ls /sys/class/backlight)" in
+	*intel*)
+		if [ -w "$backlight_path/intel_backlight/brightness" ] && [ -r "$backlight_path/intel_backlight/max_brightness" ]; then
+			brightness_file="$backlight_path/intel_backlight/brightness"
+			max_file="$backlight_path/intel_backlight/max_brightness"
+		else
+			echo "Could not read files in $backlight_path/intel_backlight/" && exit 1
+		fi ;;
+	*acpi*)
+		if [ -w "$backlight_path/acpi_video0/brightness" ] && [ -r "$backlight_path/acpi_video0/max_backlight" ]; then
+			brightness_file="$backlight_path/acpi_video0/brightness"
+			max_file="$backlight_path/acpi_video0/max_brightness"
+		else
+			echo "Could not read files in $backlight_path/acpi_video0/" && exit 1
+		fi ;;
+esac
+
+brightness=$(cat $brightness_file)
+max_brightness=$(cat $max_file)
+let "percentage = $brightness * 100 / $max_brightness"
+
+while [ -n "$1" ]; do
+	case "$1" in
+		-h) cat $help_file ;;
+		--help) cat $help_file ;;
+		-m) echo $max_brightness ;;
+		-p) echo $percentage% ;;
+		-s) echo $brightness ;;
+		--inc)
+			by=$2
+			if [ $by -eq $by ] 2> /dev/null && [ $by -lt $max_brightness ] 2> /dev/null && [ $by -gt 0 ] 2> /dev/null; then
+				let "appended = $brightness + $by"
+				[ $appended -lt $max_brightness ] && echo $appended > $brightness_file
+				[ $appended -ge $max_brightness ] && echo "2777" > $brightness_file
+			elif ! [ $by -eq $by ] 2> /dev/null; then
+				echo "$by is not an integer" && exit 1
+			elif ! [ $by -lt $max_brightness ] 2> /dev/null; then
+				echo "[value] cannot exceed $max_brightness or be empty" && exit 1
+			elif ! [ $by -gt 0 ] 2> /dev/null; then
+				echo "[value] cannot be negative or 0" && exit 1
+			else
+				echo "Wrong [value]" && exit 1
+			fi
+			shift ;;
+		--dec)
+			by=$2
+			if [ $by -eq $by ] 2> /dev/null && [ $by -lt $max_brightness ] 2> /dev/null && [ $by -gt 0 ] 2> /dev/null; then
+				let "appended = $brightness - $by"
+				[ $appended -gt 0 ] && echo $appended > $brightness_file
+				[ $appended -le 0 ] && echo "1" > $brightness_file
+			elif ! [ $by -eq $by ] 2> /dev/null; then
+				echo "$by is not an integer" && exit 1
+			elif ! [ $by -lt $max_brightness ] 2> /dev/null; then
+				echo "[value] cannot exceed $max_brightness or be empty" && exit 1
+			elif ! [ $by -gt 0 ] 2> /dev/null; then
+				echo "[value] cannot be negative or 0" && exit 1
+			else
+				echo "Wrong [value]" && exit 1
+			fi
+			shift ;;
+		*) echo "Invalid option $1"
+		   echo "Try backlight -h or backlight --help for more information" ;;
+	esac
+	shift
+done

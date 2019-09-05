@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Variables for file paths
+file=$(readlink -f "$1")
+dir=$(dirname "$file")
+base="${file%.*}"
+# basename="${1%.*}"
+
+# Exit if cd fails in changing directory to $dir
+cd "$dir" || exit
+
+# function for compiling tex files
+textype() { \
+	command="pdflatex"
+	$command --output-directory="$dir" "$1" &&
+	$command --output-directory="$dir" "$1"
+	}
+
+case "$file" in
+	# compiling tex
+	*\.tex) textype "$file" ;;
+	# compiling python
+       	*\.py) python2 "$file" || python "$file" ;;
+	# Compiling C++
+	*\.cc) g++ -o "$base" "$file" && "$base" ;;
+	*\.cp) g++ -o "$base" "$file" && "$base" ;;
+	*\.cxx) g++ -o "$base" "$file" && "$base" ;;
+	*\.cpp) g++ -o "$base" "$file" && "$base" ;;
+	*\.CPP) g++ -o "$base" "$file" && "$base" ;;
+	*\.c++) g++ -o "$base" "$file" && "$base" ;;
+	*\.C) g++ -o "$base" "$file" && "$base" ;;
+	# compiling C
+	*\.c) cc "$file" -o "$base" && "$base" ;;
+	# Compiling suckless utilities configs
+	*config.h) sudo make install ;;
+	# compiling markdown
+	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
+	*\.Rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
+	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+esac

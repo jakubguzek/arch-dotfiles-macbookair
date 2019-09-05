@@ -1,0 +1,19 @@
+Usage: backlight [ -hmps ] [ --inc value ] [ --dec value ]
+backlight is a small script that changes or prints the current value of
+ backlight brightness by reading and writing to files in
+/sys/class/backlight/intel_backlight/ or /sys/class/backlight/acpi_video0/.
+
+Options:
+	-h, --help		Print this help message
+	-m			Print the maximal value of backlight brightness
+	-p 			Print the current value of backlight brightness in percent
+	-s 			Print the current value of backlight brightness
+	    --inc value 	Increase the current value of backlight brightness by
+ value. If the increased value would exceed the maximal value then maximal
+ value is set instead.
+	    --dec value		Decrease the current value of backlight brightness by
+ value. If the decreased value would be less than or equal to zero then
+ 1 is set instead.
+
+Value for --inc and --dec options must be a positive integer and cannot be empty.
+See "man backlight" for more info

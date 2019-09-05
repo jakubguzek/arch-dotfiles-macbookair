@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/jakubguzek/.config/sxhkd'
+let g:netrw_dirhist_2='/home/jakubguzek/Documents/latex/matematyka II'
+let g:netrw_dirhist_3='/home/jakubguzek/Documents/latex/matematyka1'
+let g:netrw_dirhist_4='/home/jakubguzek/Documents/latex/psychologia'
+let g:netrw_dirhist_5='/home/jakubguzek/.git'

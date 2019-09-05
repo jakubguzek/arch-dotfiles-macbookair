@@ -1,0 +1,46 @@
+.TH man 1 "backlight man page"
+.SH NAME
+backlight \- change or print current backlight birghtness value
+.SH SYNOPSIS
+.B backlight
+.RB [\| \-hmps \|]
+.RB [\| \-\-inc
+.IR value \|]
+.RB [\| \-\-dec
+.IR value \|]
+.SH DESCRIPTION
+.B backlight
+is a small script that changes or prints the current value of backlight brightness by accessing the files in
+.IR /sys/class/backlight/intel_backlight/
+or
+.I /sys/class/backlight/acpi_video0/
+It is then essential that at least files:
+.I brightness
+and
+.I max_brightness
+in those locations be writeable for script to work. This can be achieved by setting
+.I udev
+rules that change the ownership or group privileges for those files.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Print the help message
+.TP
+.B \-m
+Print the maximal value of backlight brightness
+.TP
+.B \-p
+Print the current value of the backlight brightness in percent
+.TP
+.B \-s
+Print the current value of the backlight brightness
+.TP
+\fB\-\-inc \fI\,value\/\fR
+Increase the current brightness by \fIvalue\fR. If the increased value would be greater than maximal value, then brightness is set to maximum. \fIvalue\fR must be a positive integer and cannot be empty.
+.TP
+\fB\-\-dec \fI\,value\/\fR
+Decrease the current brightness by \fIvalue\fR. If the decreased value would be less than, or equal zero, then brightness is set to 1 instead. \fIvalue\fR must be a positive integer and cannot be empty
+.SH SEE ALSO
+udev(7),
+.SH AUTHOR
+Jakub Guzek (jakub.j.guzek@gmail.com)

@@ -1,0 +1,59 @@
+#!/usr/bin/env sh
+
+led_path="/sys/class/leds/smc::kbd_backlight"
+help_file="$HOME/.local/bin/man/kbd-leds_help"
+
+[ -w "$led_path/brightness" ] && [ -r "$led_path/max_brightness" ] || exit 1
+
+max_brightness="$(cat $led_path/max_brightness)"
+brightness="$(cat $led_path/brightness)"
+let "percentage = $brightness * 100 / $max_brightness"
+
+! [ -n "$1" ] && echo $percentage% && exit 1
+
+case "$1" in
+	-*) while [ -n "$1" ]; do
+		case "$1" in
+			-h) cat $help_file ;;
+			--help) cat $help_file ;;
+			-m) echo $max_brightness ;;
+			--max) echo $max_brightness > $led_path/brightness ;;
+			--min) echo 0 > $led_path/brightness ;;
+			-p) echo $percentage% ;;
+			-s) echo $brightness ;;
+			--inc)
+				by=$2
+				if ! [ -n "$by" ]; then
+					echo "value cannot be empty" && exit 1
+				elif ! [ "$by" -eq "$by" ]; then
+					echo "$by is not an integer" && exit 1
+				elif [ "$by" -ge "$max_brightness" ]; then
+					echo "value cannot exceed max brightness" && exit 1
+				elif [ "$by" -gt 0 ]; then
+					let "appended = $brightness + $by"
+					[ "$appended" -ge "$max_brightness" ] && echo $max_brightness > $led_path/brightness
+					[ "$appended" -lt "$max_brightness" ] && echo $appended > $led_path/brightness
+				fi
+				shift ;;
+			--dec)
+				by=$2
+				if ! [ -n "$by" ]; then
+					echo "value cannot be empty" && exit 1
+				elif ! [ "$by" -eq "$by" ]; then
+					echo "$by is not an integer" && exit 1
+				elif  [ "$by" -ge $max_brightness ]; then
+					echo "value cannot exceed max brightness" && exit 1
+				elif [ "$by" -gt 0 ]; then
+					let "appended = $brightness - $by"
+					[ "$appended" -le 0 ] && echo 0 > $led_path/brightness
+					[ "$appended" -gt 0 ] && echo $appended > $led_path/brightness
+				fi
+				shift ;;
+			*) echo "Invalid option $1"
+			   echo "Try kbd-led -h or kbd-led --help for more information" ;;
+		esac
+		shift
+	    done ;;
+	*) echo "Invalid option $1"
+	   echo "Try kbd-led -h or kbd-led --help for more information" ;;
+esac
