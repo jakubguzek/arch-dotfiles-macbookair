@@ -11,7 +11,5 @@ export BIB="$HOME/Documents/latex/bib.bib"
 
 echo $0 | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
-(cat $HOME/.cache/wal/sequences &)
-
 # Start i3 if not already running
 [ "$(tty)" = "/dev/tty1" ] && !  pgrep -x i3 >/dev/null && exec startx

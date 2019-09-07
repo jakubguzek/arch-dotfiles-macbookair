@@ -15,8 +15,6 @@ super + shift + i
 	$TERMINAL neofetch
 super + shift + m
 	$TERMINAL -e neomutt
-super + shift + r
-	reader_mode.sh
 super + shift + b
 	battery_check
 
