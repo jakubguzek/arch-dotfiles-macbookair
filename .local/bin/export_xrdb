@@ -1,0 +1,4 @@
+#!/bin/bash
+
+awk '{ print $1"="$2 }' .Xresources | sed 19q | sed 's/\*.\([a-z]*[0-9]*\):/export \1/g' > $HOME/.local/bin/color_cache
+[ -e $HOME/.local/bin/color_cache ] && . "$HOME/.local/bin/color_cache"

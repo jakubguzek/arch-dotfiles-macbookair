@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+[ -w $HOME/.Xresources ] && xresources="$HOME/.Xresources"
+
+case "$1" in
+	-*) while [ -n "$1" ]; do
+		case "$1" in
+			-h) cat $help_file ;;
+			--help) cat $help_file ;;
+			--wallpaper)
+				if [ -n "$2" ]; then
+					what="$2"
+					if [ -f $what ]; then
+						xwallpaper --zoom $what
+					else
+						echo "$0: $what: No such file or directory."
+					fi
+				else
+					echo "Missing argument" && exit 1
+				fi
+				shift ;;
+			-w)
+				if [ -n "$2" ]; then
+					what="$2"
+					if [ -f $what ]; then
+						xwallpaper --zoom $what
+					else
+						echo "$0: $what: No such file or directory."
+					fi
+				else
+					echo "Missing argument" && exit 1
+				fi
+				shift ;;
+			--set)
+				if [ -n "$2" ]; then
+					what="$2"
+					if [ -f $what ]; then
+						cat $what > $xresources
+						xrdb $xresources
+						i3-msg restart
+						awk '{ print $1"="$2 }' $xresources | sed 19q | sed 's/\*.\([a-z]*[0-9]*\):/export \1/g' > $HOME/.cache/color.sh
+					else
+						echo "$0: $what: No such file or directory"
+					fi
+				else
+					echo "Missing argument" && exit 1
+				fi
+				shift ;;
+			*) echo "Invalid option $1"
+			   echo "Try $0 -h or $0 --help for more information" && exit 1 ;;
+		esac
+		shift
+	done ;;
+	*) echo "Invalid option $1"
+	   echo "Try $0 -h or $0 --help for more information" ;;
+esac

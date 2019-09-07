@@ -7,14 +7,16 @@ Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'mboughaba/i3config.vim'
 Plug 'morhetz/gruvbox'
-Plug 'dylanaraps/wal.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set background=dark
 
 " Basics
 	set nocompatible
+	set nohlsearch
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
@@ -25,19 +27,22 @@ set background=dark
 		autocmd!
 		autocmd BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 	augroup END
-	colorscheme wal
-	" colorscheme gruvbox
+	let g:solarized_termcolors=256
+	colorscheme gruvbox
 	function ColorTweak()
 		let g:gruvbox_termcolors=256
+		let g:solarized_termcolors=256
 		let g:gruvbox_contrast_light='hard'
 		let g:gruvbox_contrast_dark='hard'
 		highlight Normal ctermbg=NONE
-		highlight LineNr ctermbg=NONE ctermfg=208
-		highlight CursorLineNr ctermbg=NONE ctermfg=208
-		highlight Folded ctermbg=NONE ctermfg=208
-		highlight ErrorMsg ctermbg=NONE ctermfg=237
+		highlight LineNr ctermbg=NONE
+		highlight CursorLineNr ctermbg=NONE
+		highlight Folded ctermbg=NONE
+		highlight ErrorMsg ctermbg=NONE
 	endfunction
 	call ColorTweak()
+" Airline
+	let g:airline_theme='solarized'
 " Autocompletion
 	set wildmode=longest,list,full
 " Disable auto-commenting on newline
@@ -64,6 +69,7 @@ set background=dark
 " Ensure proper file reading
 	augroup FileRead
 		autocmd!
+		autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 		autocmd BufRead,BufNewFile *.tex set filetype=tex
 		autocmd BufRead,BufNewFile *.py set filetype=python
 	augroup END

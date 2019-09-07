@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-if [ -e $HOME/.cache/wal/colors.sh ]; then
-	. "${HOME}/.cache/wal/colors.sh"
+if [ -e $HOME/.local/bin/color_cache ]; then
+	. "${HOME}/.local/bin/color_cache"
 	network_name=$(nmcli device wifi list | sed -n '1!p' | dmenu -i -l 15 -fn Monospace-14 -nb "$color0" -nf "$color7" -sb "$color1" -sf "$color7" | awk -F ' {2,}' '{print $2}')
 	[ "$network_name" != "" ] || exit
 	ask_pass=$(printf Yes\\nNo | dmenu -p "password?" -i -l 2 -fn Monospace-14 -nb "$color0" -nf "$color7" -sb "$color1" -sf "$color7")
