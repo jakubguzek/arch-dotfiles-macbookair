@@ -1,0 +1,65 @@
+#!/usr/bin/env sh
+
+help_file="$HOME/.local/bin/man/bar_help"
+
+case "$1" in
+	-*)
+	while [ -n "$1" ]; do
+		case "$1" in
+			-h) cat $help_file ;;
+			--help) cat $help_file ;;
+		esac
+		shift
+	done ;;
+	[a-z]*)
+	while [ -n "$1" ]; do
+		case "$1" in
+			restart)
+				if [ "$2" == "-a" ] || [ "$2" == "--all" ]; then
+					barname=$(ps -ax | awk '/polybar / && !/awk/ { print $6 }')
+					killall -q polybar
+					while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+					for i in $barname; do
+						polybar $i >/dev/null 2>&1 &
+					done
+				elif [ -n "$2" ]; then
+					bar="$2"
+					pid=$(ps -ax | grep -i "polybar $bar" | grep -v "grep" | awk '{ print $1 }')
+					kill $pid
+					sleep 1
+					polybar $bar >/dev/null 2>&1 &
+				else
+					echo "syntax error"
+					echo "bar restart [-a] [--all] [barname]"
+				fi
+				shift ;;
+			kill)
+				if [ "$2" == "-a" ] || [ "$2" == "--all" ]; then
+					killall -q polybar
+					while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+				elif [ -n "$2" ]; then
+					bar="$2"
+					pid=$(ps -ax | grep -i "polybar $bar" | grep -v "grep" | awk '{ print $1 }')
+					kill $pid
+					sleep 1
+				else
+					echo "syntax error"
+					echo "bar kill [-a] [--all] [barname]"
+				fi
+				shift ;;
+			launch)
+				if [ -n "$2" ]; then
+					bar="$@"
+					for i in $bar; do
+						polybar $i >/dev/null 2>&1 &
+					done
+				else
+					echo "syntax error"
+					echo "bar launch [barname]"
+				fi
+				shift ;;
+		esac
+		shift
+	done ;;
+	*) echo "Invalid option $1" ;;
+esac

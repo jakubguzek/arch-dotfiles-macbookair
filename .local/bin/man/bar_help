@@ -1,0 +1,9 @@
+Usage: bar [-h, --help] [COMMAND] [OPTION]
+small utiliity written in shellscript for restarting, launching and turning off the polybar status bar.
+
+COMMANDS:
+	restart [-a, --all] [bar name]		restart the bar specified by bar name or all active bars
+	kill [-a, --all] [bar nmae]		kill the bar specified by bar name or all active bars
+	launch [bar name]			launch bar specified by bar name
+
+For more information see "man bar"
