@@ -5,7 +5,8 @@ gaps outer 10
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id killall -q polybar
+exec_always --no-startup-id bar launch bar1 bar2
 
 # Dropdown widnows
 for_window [instance="dropdown_*"] floating enable
@@ -62,7 +63,8 @@ bindsym $mod+Shift+u		exec --no-strtup-id i3resize down
 bindsym $mod+Shift+i		exec --no-strtup-id i3resize up
 bindsym $mod+Shift+o		exec --no-strtup-id i3resize right
 
-bindsym $mod+b			bar mode toggle
+bindsym $mod+p			exec --no-startup-id "bar kill --all"
+bindsym $mod+Shift+p		exec --no-startup-id bar launch bar1 bar2
 
 # Workspace bindings
 bindsym $mod+Prior		workspace prev
