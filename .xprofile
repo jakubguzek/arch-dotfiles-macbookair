@@ -6,5 +6,6 @@ setbg &
 xcompmgr -r5 &
 dunst &
 xwallpaper --zoom ~/Pictures/Plant1.jpg
+xsetroot -name "$LOGNAME"
 
 unclutter &

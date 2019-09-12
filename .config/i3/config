@@ -58,10 +58,10 @@ bindsym $mod+u			move down 30
 bindsym $mod+i			move up 30
 bindsym $mod+o			move right 30
 
-bindsym $mod+Shift+y		exec --no-strtup-id i3resize left
-bindsym $mod+Shift+u		exec --no-strtup-id i3resize down
-bindsym $mod+Shift+i		exec --no-strtup-id i3resize up
-bindsym $mod+Shift+o		exec --no-strtup-id i3resize right
+bindsym $mod+Shift+y		exec --no-startup-id i3resize left
+bindsym $mod+Shift+u		exec --no-startup-id i3resize down
+bindsym $mod+Shift+i		exec --no-startup-id i3resize up
+bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
 bindsym $mod+p			exec --no-startup-id "bar kill --all"
 bindsym $mod+Shift+p		exec --no-startup-id bar launch bar1 bar2

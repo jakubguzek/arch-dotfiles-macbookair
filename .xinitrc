@@ -4,6 +4,7 @@
 
 [[ -f ~/.Xresources ]] && xrdb -merge  -I$HOME ~/.Xresources
 
-wal -R
-
-exec i3
+case $wm in
+	dwm) exec dwm ;;
+	*) exec i3 ;;
+esac

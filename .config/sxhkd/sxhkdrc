@@ -9,10 +9,8 @@ super + shift + f
 	$TERMINAL -e $FILE
 super + shift + v
 	$TERMINAL -e $EDITOR
-super + shift + u
+super + shift + n
 	fa-utf
-super + shift + i
-	$TERMINAL neofetch
 super + shift + m
 	$TERMINAL -e neomutt
 super + shift + b
