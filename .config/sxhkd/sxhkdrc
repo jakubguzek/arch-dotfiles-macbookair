@@ -1,6 +1,4 @@
 # Basics
-super + d
-	dmenu_run -i -l 10 -fn Monospace-14 -nb "#1a1a1a" -nf "#7bc7d2" -sb "#025768" -sf "#7bc7d2"
 uper + shift + Return
 	$TERMINAL
 super + shift + w
@@ -24,15 +22,15 @@ super + ctrl + 4
 
 # Media keys
 XF86AudioRaiseVolume
-	amixer -q sset Master 5%+
+	amixer -q sset Master 5%+ && refbar
 XF86AudioLowerVolume
-	amixer -q sset Master 5%-
+	amixer -q sset Master 5%- && refbar
 XF86AudioMute
-	pactl set-sink-mute 0 toggle
+	pactl set-sink-mute 0 toggle && refbar
 XF86MonBrightnessUp
-	backlight --inc 140
+	backlight --inc 140 && refbar
 XF86MonBrightnessDown
-	backlight --dec 140
+	backlight --dec 140 && refbar
 XF86AudioPrev
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 XF86AudioPlay

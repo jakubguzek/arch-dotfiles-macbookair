@@ -1,11 +1,11 @@
 #!/bin/sh
 
+xcompmgr -r5 &
+dwmstatus &
 xbindkeys &
 sxhkd &
-setbg &
-xcompmgr -r5 &
 dunst &
+xset r rate 300 50 &
 xwallpaper --zoom ~/Pictures/Plant1.jpg
-xsetroot -name "$LOGNAME"
 
 unclutter &
