@@ -42,11 +42,12 @@ status() { \
 
 	# used CPU percentage
 	printf " "
-	top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+ 	ps axch -o cmd:15,%cpu --sort=-%cpu | sed 21q | awk -F ' {2,}' '{usage+=$2} END {print usage}'
 
 	# CPU temperature
 	printf " "
-	sensors | awk '/Core 0/ {print $3}' | sed 's/+//;s/ //'
+	temp="$(cat /sys/class/thermal/thermal_zone2/temp | sed 's/...$//')°C"
+	printf "$temp"
 	printf "$delimiter"
 
 	# -- Time --- #
