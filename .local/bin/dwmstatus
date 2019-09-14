@@ -42,7 +42,7 @@ status() { \
 
 	# used CPU percentage
 	printf " "
- 	ps axch -o cmd:15,%cpu --sort=-%cpu | sed 21q | awk -F ' {2,}' '{usage+=$2} END {print usage}'
+ 	ps axch -o cmd:15,%cpu --sort=-%cpu | sed 21q | awk -F ' {2,}' '{usage+=$2} END {print usage "%"}'
 
 	# CPU temperature
 	printf " "
