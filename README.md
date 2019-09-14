@@ -14,7 +14,7 @@ General information
 -   **File Manager:** [ranger](https://github.com/ranger/ranger)
 
 My configuration of dwm can be found in [dedicated
-repository](https://github.com/jakubguzek/dwm). I didn’t included the
+repository](https://github.com/jakubguzek/dwm). I didn’t include the
 build of st that I use as it’s not mine but cloned from
 [here](https://github.com/LukeSmithxyz/st).
 
