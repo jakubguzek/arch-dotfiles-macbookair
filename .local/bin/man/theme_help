@@ -1,0 +1,9 @@
+Usage: theme [-h] [--help] [-w file] [--wallppaer file] [--set colour_theme_file]
+theme is small script for setting i3 wallpaper and/or colourscheme
+
+OPTIONS:
+	-h, --help			Print this help message
+	-w, --wallppaer file		Set new wallpaper
+	--set colour_theme_file		Set new colourscheme from file formatted like standard .Xresources file
+
+For more information see "man theme"

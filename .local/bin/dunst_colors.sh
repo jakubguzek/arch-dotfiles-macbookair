@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "${HOME}/.cache/wal/colors.sh"
+. "${HOME}/.cache/color.sh
 
 color_dunst_update () {
 	pkill dunst
