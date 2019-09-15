@@ -39,8 +39,8 @@ List of scripts
 -   `rcalc` – small script for launching `R`. Intended to use with i3,
     and `ddspawn`
 -   `refbar` – a bit edited script for refreshing dwmstatus bar, stolen
-    from [Luke Smith’s compiler
-    script](https://github.com/LukeSmithxyz/voidrice/blob/archi3/.local/bin/tools/compiler)
+    from [Luke
+    Smith](https://github.com/LukeSmithxyz/voidrice/blob/archi3/.local/bin/tools/compiler)
 -   `theme` – script for setting new wallpaper with xwallpaper and
     setting new colourscheme with xrdb
 
