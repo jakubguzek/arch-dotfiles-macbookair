@@ -9,7 +9,7 @@ General information
     [dwm](https://dwm.suckless.org/)
 -   **Terminal emulator:** [st](https://st.suckless.org/)
 -   **Shell:** Mainly bash
--   **Text editor/ISE:**
+-   **Text editor/IDE:**
     [Vim](https://www.vim.org/)/[Neovim](https://neovim.io/)
 -   **File Manager:** [ranger](https://github.com/ranger/ranger)
 
