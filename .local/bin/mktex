@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+while [ -n "$1" ]; do
+	case "$1" in
+		article)
+			printf "\\documentclass{article}\n\n\\\usepackage[utf8]{inputenc}\n\\\usepackage[T1]{fontenc}\n\n\\\begin{document}\n\n<++>\n\n\\\title{<++>}\n\\\author{Jakub J. Guzek}\n\n\\\end{document}\n" >> $2.tex
+			compiler $2.tex > /dev/null && sleep 1
+			$EDITOR $2.tex
+			shift ;;
+		book)
+			printf "\\documentclass{book}\n\n\\\usepackage[utf8]{inputenc}\n\\\usepackage[T1]{fontenc}\n\n\\\begin{document}\n\n<++>\n\n\\\title{<++>}\n\\\author{Jakub J. Guzek}\n\n\\\end{document}\n" >> $2.tex
+			compiler $2.tex && sleep 1
+			$EDITOR $2.tex
+			shift ;;
+		report)
+			printf "\\documentclass{report}\n\n\\\usepackage[utf8]{inputenc}\n\\\usepackage[T1]{fontenc}\n\n\\\begin{document}\n\n<++>\n\n\\\title{<++>}\n\\\author{Jakub J. Guzek}\n\n\\\end{document}\n" >> $2.tex
+			compiler $2.tex && sleep 1
+			$EDITOR $2.tex
+			shift ;;
+		beamer)
+			printf "\\documentclass{beamer}\n\n\\\usepackage[utf8]{inputenc}\n\\\usepackage[T1]{fontenc}\n\n\\\begin{document}\n\n<++>\n\n\\\title{<++>}\n\\\author{Jakub J. Guzek}\n\n\\\end{document}\n" >> $2.tex
+			compiler $2.tex && sleep 1
+			$EDITOR $2.tex
+			shift ;;
+		*) echo "You have to choose tex documentclass from among article, report, book and beamer" ;;
+	esac
+	shift
+done

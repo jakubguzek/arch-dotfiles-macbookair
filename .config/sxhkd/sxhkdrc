@@ -7,6 +7,8 @@ super + shift + f
 	$TERMINAL -e $FILE
 super + shift + v
 	$TERMINAL -e $EDITOR
+super + shift + r
+	$TERMINAL -e R -q --vanilla
 super + shift + n
 	fa-utf
 super + shift + m

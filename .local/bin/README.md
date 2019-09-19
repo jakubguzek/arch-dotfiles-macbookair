@@ -34,6 +34,8 @@ List of scripts
     Awesome](https://fontawesome.com/) icons into system clipboard.
 -   `kbd-leds` – script for managing brightness of keyboard leds on
     MacBook Air
+-   `mktex` – rough script for making a new texfile and opening it with
+    `$EDITOR`
 -   `nmenu` – script utilizing dmenu and NetworkManager for making
     selection of new wireless network connection not pain in the ass
 -   `rcalc` – small script for launching `R`. Intended to use with i3,
