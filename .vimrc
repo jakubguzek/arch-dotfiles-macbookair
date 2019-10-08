@@ -111,9 +111,9 @@ set background=dark
 	autocmd FileType tex inoremap ,tb \begin{tabular}<Return><++><Return>\end{tabular}<Return><Return><++><Esc>4kA{}<Esc>i
 	autocmd FileType tex inoremap ,tab \begin{table}<Return>\centering<Return>\caption<Return>\begin{tabular}{<++>}<Return><++><Return>\end{tabular}<Return>\end{table}<Return><Return><++><Esc>6kA{}<Esc>i
 	autocmd FileType tex inoremap ,chap \chapter{}<Return><Return><++><Esc>2kf}i
-	autocmd FileType tex inoremap ,sec \section{}<Return><Return><++><Esc>2kF}i
-	autocmd FileType tex inoremap ,ssec \subsection{}<Return><Return><++><Esc>2kF}i
-	autocmd FileType tex inoremap ,sssec \subsubsection{}<Return><Return><++><Esc>2kF}i
+	autocmd FileType tex inoremap ,sec \section{}<Return><Return><++><Esc>2kf}i
+	autocmd FileType tex inoremap ,ssec \subsection{}<Return><Return><++><Esc>2kf}i
+	autocmd FileType tex inoremap ,sssec \subsubsection{}<Return><Return><++><Esc>2kf}i
 	autocmd FileType tex inoremap ,up <Esc>/usepackage<Enter>o\usepackage{}<Esc>i
 	autocmd FileType tex nnoremap ,up /usepackage<Enter>o\usepackage{}<Esc>i
 	autocmd FileType tex inoremap ,bt {\blindtext}
