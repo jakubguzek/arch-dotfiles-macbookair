@@ -117,6 +117,9 @@ set background=dark
 	autocmd FileType tex inoremap ,up <Esc>/usepackage<Enter>o\usepackage{}<Esc>i
 	autocmd FileType tex nnoremap ,up /usepackage<Enter>o\usepackage{}<Esc>i
 	autocmd FileType tex inoremap ,bt {\blindtext}
+	autocmd FileType tex inoremap ,bl \vspace{\baselineskip}<Return><Return>
+	autocmd FileType tex inoremap ,eq \begin{equation}<Return><Return>\end{equation}<Return><Return><++><Esc>3ki
+	autocmd FileType tex inoremap ,mm $$ <++><Esc>F$i
 
 
 " HTML
