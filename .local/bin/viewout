@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+# Variables for file paths
+file=$(readlink -f "$1")
+dir=$(dirname "$file")
+base="${file%.*}"
+
+# Exit if cd fails in changing directory to $dir
+cd "$dir" || exit
+
+
+case "$file" in
+	# pdfs from LaTeX
+	*\.tex|*\.Rmd|*\.rmd|*\.md) setsid "$READER" "$base".pdf >/dev/null 2>&1 & ;;
+	# bitmap graphics from R
+	*\.R) setsid sxiv "$base".png >/dev/null 2>&1 & ;;
+	*\.R) setsid sxiv "$base".jpg >/dev/null 2>&1 & ;;
+	*\.R) setsid sxiv "$base".jpeg >/dev/null 2>&1 & ;;
+	# html
+	*.html) setsid "$BROWSER" --new-window "$base".html >/dev/null 2>&1 & ;;
+esac

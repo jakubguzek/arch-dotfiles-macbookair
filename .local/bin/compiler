@@ -33,6 +33,8 @@ case "$file" in
 	*\.c) cc "$file" -o "$base" && "$base" ;;
 	# Compiling suckless utilities configs
 	*config.h) sudo make install ;;
+	# compiling R scripts
+	*\.R) Rscript "$file" ;;
 	# compiling markdown
 	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
 	*\.Rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;

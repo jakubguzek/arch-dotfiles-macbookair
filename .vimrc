@@ -71,7 +71,7 @@ set background=dark
 	" map <leader>3p :w! \| :terminal ++rows=7 python %<CR>
 	" map <leader>2p :w! \| :terminal ++rows=7 python2 %<CR>
 	map <leader>c :w! \| !compiler %<CR>
-	map <leader>p :!setsid $READER %:r.pdf >/dev/null 2>&1 &<CR><CR>
+	map <leader>p :!viewout %<CR><CR>
 " Ensure proper file reading
 	augroup FileRead
 		autocmd!
