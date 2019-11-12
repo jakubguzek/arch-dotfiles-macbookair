@@ -38,5 +38,5 @@ case "$file" in
 	# compiling markdown
 	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
 	*\.Rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
-	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
+	*\.md) pandoc "$file" --pdf-engine=pdflatex -o "$base".pdf ;;
 esac

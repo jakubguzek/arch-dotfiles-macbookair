@@ -120,6 +120,7 @@ set background=dark
 	autocmd FileType tex inoremap ,bl \vspace{\baselineskip}<Return><Return>
 	autocmd FileType tex inoremap ,eq \begin{equation}<Return><Return>\end{equation}<Return><Return><++><Esc>3ki
 	autocmd FileType tex inoremap ,mm $$ <++><Esc>F$i
+	autocmd FileType tex inoremap ,df \mathrm{d}
 
 
 " HTML
